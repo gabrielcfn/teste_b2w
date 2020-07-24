@@ -11,7 +11,12 @@ import styles from "./Pesquisa.module.css";
 
 const Pesquisa = () => {
   const [termoPesquisado, setTermoPesquisado] = useState("");
-  console.log("termoPesquisado => ", termoPesquisado);
+
+  const uri = "http://www.omdbapi.com/?i=tt3896198&apikey=ca9a6fca";
+
+  const buttonClickedHandler = () => {
+    console.log("cliquei com termo => ", termoPesquisado);
+  };
 
   return (
     <form name="formPesquisar" className={styles.container}>
@@ -36,7 +41,7 @@ const Pesquisa = () => {
         variant="contained"
         color="primary"
         className={styles.botao}
-        onClick={() => {}}
+        onClick={buttonClickedHandler}
       >
         Buscar
       </Button>
