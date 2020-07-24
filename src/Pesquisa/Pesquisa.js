@@ -12,14 +12,30 @@ import styles from "./Pesquisa.module.css";
 const Pesquisa = () => {
   const [termoPesquisado, setTermoPesquisado] = useState("");
 
-  const uri = "http://www.omdbapi.com/?i=tt3896198&apikey=ca9a6fca";
+  const uri = "http://www.omdbapi.com/?apikey=ca9a6fca";
 
-  const buttonClickedHandler = () => {
+  const formSubmitHandler = (ev) => {
+    ev.preventDefault();
     console.log("cliquei com termo => ", termoPesquisado);
+    buscarPoster();
+  };
+
+  const buscarPoster = () => {
+    fetch(`${uri}&s=${termoPesquisado}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => console.log(data));
   };
 
   return (
-    <form name="formPesquisar" className={styles.container}>
+    <form
+      name="formPesquisar"
+      onSubmit={(event) => {
+        formSubmitHandler(event);
+      }}
+      className={styles.container}
+    >
       <TextField
         id="outlined-basic"
         label="Pesquisar filmes"
@@ -41,7 +57,7 @@ const Pesquisa = () => {
         variant="contained"
         color="primary"
         className={styles.botao}
-        onClick={buttonClickedHandler}
+        type="submit"
       >
         Buscar
       </Button>
