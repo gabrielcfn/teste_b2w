@@ -2,7 +2,8 @@ import React, { useReducer } from "react";
 import "./App.css";
 import Container from "@material-ui/core/Container";
 import Pesquisa from "./Pesquisa/Pesquisa";
-import Filmes from "./Filmes/Filmes";
+import FilmeDetalhe from "./FilmeDetalhe/FilmeDetalhe";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 // context
 export const AppContext = React.createContext();
@@ -34,14 +35,19 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="App">
-      <Container maxWidth="sm">
-        <AppContext.Provider value={{ state, dispatch }}>
-          <Pesquisa />
-          <Filmes filmes={initialState.filmes} />
-        </AppContext.Provider>
-      </Container>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Container maxWidth="sm">
+          <AppContext.Provider value={{ state, dispatch }}>
+            <Switch>
+              <Route path="/pesquisar" component={Pesquisa} />
+              <Route path="/detalhe" component={FilmeDetalhe} />
+              <Redirect from="/" to="/pesquisar" />
+            </Switch>
+          </AppContext.Provider>
+        </Container>
+      </div>
+    </BrowserRouter>
   );
 }
 
