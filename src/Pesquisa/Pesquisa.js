@@ -15,7 +15,7 @@ const Pesquisa = () => {
   const [termoPesquisado, setTermoPesquisado] = useState("");
 
   // expõe o contexto
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
   // uri das pesquisas
   const uri = "http://www.omdbapi.com/?apikey=ca9a6fca";
@@ -37,11 +37,12 @@ const Pesquisa = () => {
         return res.json();
       })
       .then((data) => {
+        // sucesso
         if (data.Response === "True") {
           const payload = { filmes: data.Search, pesquisa: true };
           atualizarPesquisa(payload);
         } else {
-          debugger;
+          // falha
           const payload = { filmes: [], pesquisa: true };
           atualizarPesquisa(payload);
         }

@@ -5,7 +5,7 @@ import Filme from "../Filme/Filme";
 
 const Filmes = () => {
   // expõe o contexto
-  const { state, dispatch } = useContext(AppContext);
+  const { state } = useContext(AppContext);
   let filmes;
 
   if (state.filmes.length === 0 && state.pesquisa === true) {
