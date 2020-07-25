@@ -2,6 +2,7 @@ import React from "react";
 import Styles from "./Filme.module.css";
 import BlockIcon from "@material-ui/icons/Block";
 import Tooltip from "@material-ui/core/Tooltip";
+import Button from "@material-ui/core/Button";
 
 const Filme = (props) => {
   console.log(props);
@@ -24,13 +25,26 @@ const Filme = (props) => {
     <div className={Styles.containerFilme}>
       <Tooltip
         title={
-          <React.Fragment>
+          <div className={Styles.tooltip}>
             <h3>
               {props.filme.Title} - {props.filme.Year}
             </h3>
-            <p>{props.filme.Genre}</p>
-          </React.Fragment>
+            <p>Tipo: {props.filme.Type}</p>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => {
+                console.log(`cliquei em ${props.filme.Title}`);
+              }}
+            >
+              Ver Mais
+            </Button>
+          </div>
         }
+        arrow
+        width="300px"
+        interactive
+        placement="bottom"
       >
         <div className={Styles.posterContainer}>{poster}</div>
       </Tooltip>

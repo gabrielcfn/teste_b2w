@@ -7,3 +7,8 @@
 .posterContainer {
   height: 445px;
 }
+
+.tooltip {
+  text-align: center;
+  min-width: 300px;
+}
