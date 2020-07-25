@@ -8,6 +8,15 @@
   height: 445px;
 }
 
+.notFound {
+  display: flex;
+  flex-direction: column;
+  height: 445px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6em;
+}
+
 .tooltip {
   text-align: center;
   min-width: 300px;

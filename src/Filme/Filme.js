@@ -5,13 +5,16 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 
 const Filme = (props) => {
-  console.log(props);
-
   // prepara a imagem ou um quadrado com ícone caso não seja encontrada
   let poster;
 
   if (props.filme.Poster === "N/A") {
-    poster = <BlockIcon></BlockIcon>;
+    poster = (
+      <div className={Styles.notFound}>
+        <BlockIcon style={{ fontSize: 36 }}></BlockIcon>
+        <p>Poster não encontrado</p>
+      </div>
+    );
   } else {
     poster = (
       <img

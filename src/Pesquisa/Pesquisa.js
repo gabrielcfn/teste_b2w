@@ -79,6 +79,7 @@ const Pesquisa = () => {
         color="primary"
         className={styles.botao}
         type="submit"
+        disabled={termoPesquisado.length === 0}
       >
         Buscar
       </Button>
