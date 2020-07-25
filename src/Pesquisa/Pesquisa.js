@@ -28,17 +28,23 @@ const Pesquisa = () => {
   // controla o disparo da pesquisa
   const formSubmitHandler = (ev) => {
     ev.preventDefault();
-    bsucarFilmes();
+    buscarFilmes();
   };
 
-  const bsucarFilmes = () => {
+  const buscarFilmes = () => {
     fetch(`${uri}&s=${termoPesquisado}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data.Search);
-        atualizarPesquisa(data.Search);
+        if (data.Response === "True") {
+          const payload = { filmes: data.Search, pesquisa: true };
+          atualizarPesquisa(payload);
+        } else {
+          debugger;
+          const payload = { filmes: [], pesquisa: true };
+          atualizarPesquisa(payload);
+        }
       });
   };
 

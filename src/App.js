@@ -10,6 +10,8 @@ export const AppContext = React.createContext();
 // State inicial, será compartilhado por todo o app;
 const initialState = {
   filmes: [],
+  pesquisa: false,
+  erro: "",
 };
 
 // Reducer
@@ -17,7 +19,9 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "UPDATE_INPUT":
       return {
-        filmes: action.data,
+        filmes: action.data.filmes,
+        pesquisa: action.data.pesquisa,
+        erro: action.data.Error,
       };
 
     default:
