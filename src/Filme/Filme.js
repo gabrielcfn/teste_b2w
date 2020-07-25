@@ -1,5 +1,8 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import Styles from "./Filme.module.css";
+
 import BlockIcon from "@material-ui/icons/Block";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
@@ -36,9 +39,8 @@ const Filme = (props) => {
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => {
-                console.log(`cliquei em ${props.filme.Title}`);
-              }}
+              component={RouterLink}
+              to={`/detalhe/${props.filme.imdbID}`}
             >
               Ver Mais
             </Button>

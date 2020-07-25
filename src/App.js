@@ -41,7 +41,7 @@ function App() {
           <AppContext.Provider value={{ state, dispatch }}>
             <Switch>
               <Route path="/pesquisar" component={Pesquisa} />
-              <Route path="/detalhe" component={FilmeDetalhe} />
+              <Route path="/detalhe/:imdbID" component={FilmeDetalhe} />
               <Redirect from="/" to="/pesquisar" />
             </Switch>
           </AppContext.Provider>
