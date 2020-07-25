@@ -1,0 +1,9 @@
+.containerFilme {
+  background-color: darkgray;
+  width: 300px;
+  margin: 10px auto;
+}
+
+.posterContainer {
+  height: 445px;
+}
