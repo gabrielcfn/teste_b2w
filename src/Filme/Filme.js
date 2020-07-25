@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "./Filme.module.css";
 import BlockIcon from "@material-ui/icons/Block";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const Filme = (props) => {
   console.log(props);
@@ -21,11 +22,18 @@ const Filme = (props) => {
 
   return (
     <div className={Styles.containerFilme}>
-      <div className={Styles.posterContainer}>{poster}</div>
-      <h3>
-        {props.filme.Title} - {props.filme.Year}
-      </h3>
-      <p>{props.filme.Genre}</p>
+      <Tooltip
+        title={
+          <React.Fragment>
+            <h3>
+              {props.filme.Title} - {props.filme.Year}
+            </h3>
+            <p>{props.filme.Genre}</p>
+          </React.Fragment>
+        }
+      >
+        <div className={Styles.posterContainer}>{poster}</div>
+      </Tooltip>
     </div>
   );
 };
