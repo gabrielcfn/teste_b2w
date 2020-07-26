@@ -42,7 +42,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Container maxWidth="sm">
+        <Container>
           <AppContext.Provider value={{ state, dispatch }}>
             <Switch>
               <Route path="/pesquisar" component={Pesquisa} />

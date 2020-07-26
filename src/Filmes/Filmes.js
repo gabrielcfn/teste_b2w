@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
 
+import styles from "./Filmes.module.css";
+
 import Filme from "../Filme/Filme";
 
 const Filmes = () => {
@@ -16,7 +18,7 @@ const Filmes = () => {
     });
   }
 
-  return <div>{filmes}</div>;
+  return <div className={styles.Filmes}>{filmes}</div>;
 };
 
 export default Filmes;

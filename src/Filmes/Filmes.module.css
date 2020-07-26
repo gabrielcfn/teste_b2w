@@ -1,0 +1,17 @@
+.Filmes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-content: start;
+  align-items: start;
+}
+
+@media screen and (max-width: 480px) {
+  .Filmes {
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+    align-items: center;
+  }
+}
