@@ -21,11 +21,13 @@ const Pesquisa = (props) => {
 
   const [page, setPage] = useState(1);
 
+  // atualiza a página
   const handleChange = (event, value) => {
     setPage(value);
     buscarFilmes(value);
   };
 
+  // faz a chamada da paginação
   const buscarFilmes = (pg) => {
     fetch(`${uri}&s=${state.termo}&page=${pg}`)
       .then((res) => {
@@ -53,11 +55,18 @@ const Pesquisa = (props) => {
       });
   };
 
+  const calcularPaginas = (total) => {
+    return Math.ceil(total / 10);
+  };
+
   return (
     <React.Fragment>
       <Buscador />
       <Filmes filmes={props.filmes} />
-      <Pagination count={10} onChange={handleChange} />
+      <Pagination
+        count={calcularPaginas(state.total)}
+        onChange={handleChange}
+      />
     </React.Fragment>
   );
 };

@@ -44,6 +44,7 @@ const Buscador = () => {
             pesquisa: true,
             termo: termoPesquisado,
             pagina: 1,
+            total: data.totalResults,
           };
           atualizarPesquisa(payload);
         } else {
@@ -53,6 +54,7 @@ const Buscador = () => {
             pesquisa: true,
             termo: termoPesquisado,
             pagina: 1,
+            total: 0,
           };
           atualizarPesquisa(payload);
         }

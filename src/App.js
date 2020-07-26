@@ -15,6 +15,7 @@ const initialState = {
   erro: "",
   pagina: 1,
   termo: "",
+  total: 0,
 };
 
 // Reducer
@@ -27,13 +28,7 @@ const reducer = (state, action) => {
         erro: action.data.Error,
         pagina: action.data.pagina,
         termo: action.data.termo,
-      };
-    case "PAGINAR":
-      return {
-        filmes: action.data.filmes,
-        pagina: action.data.pagina,
-        termo: initialState.termo,
-        pesquisa: initialState.pesquisa,
+        total: action.data.total,
       };
     default:
       return initialState;
