@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Buscador from "../Buscador/Buscador";
 import Filmes from "../Filmes/Filmes";
 
+import Pagination from "@material-ui/lab/Pagination";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 // importa o contexto do app
 import { AppContext } from "../App";
-
-import Pagination from "@material-ui/lab/Pagination";
 
 const Pesquisa = (props) => {
   // expõe o contexto
@@ -70,9 +71,16 @@ const Pesquisa = (props) => {
     />
   );
 
+  const mobile = useMediaQuery("(max-width:480px)");
+
   return (
     <React.Fragment>
       <Buscador />
+      {mobile ? (
+        <span>
+          Use um toque longo sobre o poster para ver mais detalhes do filme
+        </span>
+      ) : null}
       <Filmes filmes={props.filmes} />
       {state.total > 0 ? paginacao : null}
     </React.Fragment>

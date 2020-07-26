@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: start;
-  align-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 480px) {
   .Filmes {
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-content: center;
     align-items: center;
   }
