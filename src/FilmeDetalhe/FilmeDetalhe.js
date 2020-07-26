@@ -52,34 +52,74 @@ const FilmeDetalhe = (props) => {
 
   return (
     <div className={styles.FilmeDetalhe}>
-      <h1>
-        {filmePesquisado.Title}{" "}
+      <h1 className={styles.titleBar}>
+        {filmePesquisado.Title}
         <span className={styles.Ano}>{filmePesquisado.Year}</span>
       </h1>
       {poster}
-      <p>
-        <span>Diretor:</span> {filmePesquisado.Director}
-      </p>
-      <p>
-        <span>Nota:</span> {filmePesquisado.imdbRating}/10
-        <span> ({filmePesquisado.imdbVotes} votos)</span>
-      </p>
-      <p>Classificação etária: {filmePesquisado.Rated}</p>
-      <p>{filmePesquisado.Type}</p>
-      <p>{filmePesquisado.Genre}</p>
-      <p>{filmePesquisado.Plot}</p>
-      <p>
-        <span>Lançamento:</span> {filmePesquisado.Released}
-        <span> - {filmePesquisado.Country}</span>
-      </p>
-      <p>Elenco: {filmePesquisado.Actors}</p>
-      <p>Escrito por {filmePesquisado.Writer}</p>
-      <p>Idioma: {filmePesquisado.Language}</p>
+      <div className={styles.bloco}>
+        <p>
+          <span className={styles.destaque}>Nota:</span>
+          {filmePesquisado.imdbRating}/10
+          <span> ({filmePesquisado.imdbVotes} votos)</span>
+          <span className={styles.destaque}> Classificação etária:</span>
+          {filmePesquisado.Rated}
+        </p>
+        <p>
+          <span className={styles.destaque}>Tipo: </span>
+          {filmePesquisado.Type}
+        </p>
 
-      <p>Prêmios: {filmePesquisado.Awards}</p>
-      <p>Metascore: {filmePesquisado.Metascore}</p>
-      <p>imdbiD: {filmePesquisado.imdbiD}</p>
+        <p>
+          <span className={styles.destaque}>Gênero: </span>
+          {filmePesquisado.Genre}
+        </p>
+        <p>
+          <span className={styles.destaque}>Lançamento:</span>
+          {filmePesquisado.Released}
+          <span> - {filmePesquisado.Country}</span>
+        </p>
+      </div>
 
+      <div className={`${styles.bloco} ${styles.blocoSinopse} `}>
+        <p className={`${styles.titleBar} ${styles.destaque} `}>Sinopse</p>
+        <p>{filmePesquisado.Plot}</p>
+      </div>
+
+      <div className={styles.bloco}>
+        <p className={`${styles.titleBar} ${styles.destaque} `}>
+          Ficha Técnica
+        </p>
+        <p>
+          <span className={styles.destaque}>Elenco: </span>
+          {filmePesquisado.Actors}
+        </p>
+        <p>
+          <span className={styles.destaque}>Escrito por </span>
+          {filmePesquisado.Writer}
+        </p>
+        <p>
+          <span className={styles.destaque}>Dirigido por: </span>
+          {filmePesquisado.Director}
+        </p>
+        <p>
+          <span className={styles.destaque}>Idioma: </span>
+          {filmePesquisado.Language}
+        </p>
+
+        <p>
+          <span className={styles.destaque}>Prêmios: </span>
+          {filmePesquisado.Awards}
+        </p>
+        <p>
+          <span className={styles.destaque}>Metascore: </span>
+          {filmePesquisado.Metascore}
+        </p>
+        <p>
+          <span className={styles.destaque}>imdbID: </span>
+          {filmePesquisado.imdbID}
+        </p>
+      </div>
       <Button component={RouterLink} to={`/pesquisar`}>
         Voltar para a busca
       </Button>

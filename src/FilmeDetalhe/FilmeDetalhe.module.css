@@ -1,10 +1,35 @@
 .FilmeDetalhe {
   word-break: break-word;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
 }
 
 .Ano {
-  font-size: 0.5em;
+  font-size: 0.6em;
   font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.bloco {
+  text-align: left;
+}
+
+.destaque {
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+.blocoSinopse {
+  font-size: 1.2em;
+}
+
+.titleBar {
+  font-size: 1.3em;
+  text-align: center;
+  background-color: #ddd;
+  padding: 7px;
+  border-radius: 5px;
 }
