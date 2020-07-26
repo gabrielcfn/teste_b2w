@@ -19,11 +19,14 @@ const Pesquisa = (props) => {
   // uri das pesquisas
   const uri = "http://www.omdbapi.com/?apikey=ca9a6fca";
 
-  const [page, setPage] = useState(1);
-
   // atualiza a página
   const handleChange = (event, value) => {
-    setPage(value);
+    const payload = {
+      ...state,
+      pagina: value,
+    };
+
+    atualizarPesquisa(payload);
     buscarFilmes(value);
   };
 
@@ -59,14 +62,19 @@ const Pesquisa = (props) => {
     return Math.ceil(total / 10);
   };
 
+  const paginacao = (
+    <Pagination
+      count={calcularPaginas(state.total)}
+      onChange={handleChange}
+      page={state.pagina}
+    />
+  );
+
   return (
     <React.Fragment>
       <Buscador />
       <Filmes filmes={props.filmes} />
-      <Pagination
-        count={calcularPaginas(state.total)}
-        onChange={handleChange}
-      />
+      {state.total > 0 ? paginacao : null}
     </React.Fragment>
   );
 };
