@@ -13,6 +13,8 @@ const initialState = {
   filmes: [],
   pesquisa: false,
   erro: "",
+  pagina: 1,
+  termo: "",
 };
 
 // Reducer
@@ -23,6 +25,7 @@ const reducer = (state, action) => {
         filmes: action.data.filmes,
         pesquisa: action.data.pesquisa,
         erro: action.data.Error,
+        pagina: action.data.pagina,
       };
 
     default:

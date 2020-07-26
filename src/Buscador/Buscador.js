@@ -20,7 +20,7 @@ const Buscador = () => {
   // uri das pesquisas
   const uri = "http://www.omdbapi.com/?apikey=ca9a6fca";
 
-  // atualiza o estado
+  // atualiza o estado (contexto)
   const atualizarPesquisa = (newValue) => {
     dispatch({ type: "UPDATE_INPUT", data: newValue });
   };
@@ -39,11 +39,19 @@ const Buscador = () => {
       .then((data) => {
         // sucesso
         if (data.Response === "True") {
-          const payload = { filmes: data.Search, pesquisa: true };
+          const payload = {
+            filmes: data.Search,
+            pesquisa: true,
+            termo: termoPesquisado,
+          };
           atualizarPesquisa(payload);
         } else {
           // falha
-          const payload = { filmes: [], pesquisa: true };
+          const payload = {
+            filmes: [],
+            pesquisa: true,
+            termo: termoPesquisado,
+          };
           atualizarPesquisa(payload);
         }
       });
