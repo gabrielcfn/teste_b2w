@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import Buscador from "../Buscador/Buscador";
 import Filmes from "../Filmes/Filmes";
 
@@ -9,24 +9,25 @@ import Pagination from "@material-ui/lab/Pagination";
 
 const Pesquisa = (props) => {
   // expõe o contexto
-  const { dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
 
   // atualiza o estado (contexto)
   const atualizarPesquisa = (newValue) => {
-    dispatch({ type: "UPDATE_INPUT", data: newValue });
+    dispatch({ type: "ATUALIZAR_PESQUISA", data: newValue });
   };
 
   // uri das pesquisas
   const uri = "http://www.omdbapi.com/?apikey=ca9a6fca";
 
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useState(1);
+
   const handleChange = (event, value) => {
     setPage(value);
-    buscarFilmes();
+    buscarFilmes(value);
   };
 
-  const buscarFilmes = () => {
-    fetch(`${uri}&s=${dispatch.termo}&page=${page}`)
+  const buscarFilmes = (pg) => {
+    fetch(`${uri}&s=${state.termo}&page=${pg}`)
       .then((res) => {
         return res.json();
       })
@@ -34,13 +35,18 @@ const Pesquisa = (props) => {
         // sucesso
         if (data.Response === "True") {
           const payload = {
+            ...state,
             filmes: data.Search,
+            pagina: pg,
           };
           atualizarPesquisa(payload);
         } else {
           // falha
           const payload = {
+            ...state,
             filmes: [],
+            pagina: pg,
+            erro: data.Error,
           };
           atualizarPesquisa(payload);
         }

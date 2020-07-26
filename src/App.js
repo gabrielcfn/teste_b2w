@@ -20,14 +20,21 @@ const initialState = {
 // Reducer
 const reducer = (state, action) => {
   switch (action.type) {
-    case "UPDATE_INPUT":
+    case "ATUALIZAR_PESQUISA":
       return {
         filmes: action.data.filmes,
         pesquisa: action.data.pesquisa,
         erro: action.data.Error,
         pagina: action.data.pagina,
+        termo: action.data.termo,
       };
-
+    case "PAGINAR":
+      return {
+        filmes: action.data.filmes,
+        pagina: action.data.pagina,
+        termo: initialState.termo,
+        pesquisa: initialState.pesquisa,
+      };
     default:
       return initialState;
   }

@@ -22,7 +22,7 @@ const Buscador = () => {
 
   // atualiza o estado (contexto)
   const atualizarPesquisa = (newValue) => {
-    dispatch({ type: "UPDATE_INPUT", data: newValue });
+    dispatch({ type: "ATUALIZAR_PESQUISA", data: newValue });
   };
 
   // controla o disparo da pesquisa
@@ -43,6 +43,7 @@ const Buscador = () => {
             filmes: data.Search,
             pesquisa: true,
             termo: termoPesquisado,
+            pagina: 1,
           };
           atualizarPesquisa(payload);
         } else {
@@ -51,6 +52,7 @@ const Buscador = () => {
             filmes: [],
             pesquisa: true,
             termo: termoPesquisado,
+            pagina: 1,
           };
           atualizarPesquisa(payload);
         }
