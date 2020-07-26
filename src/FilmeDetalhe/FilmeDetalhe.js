@@ -54,7 +54,7 @@ const FilmeDetalhe = (props) => {
     <div className={styles.FilmeDetalhe}>
       <h1 className={styles.titleBar}>
         {filmePesquisado.Title}
-        <span className={styles.Ano}>{filmePesquisado.Year}</span>
+        <span className={styles.Ano}> ({filmePesquisado.Year})</span>
       </h1>
       {poster}
       <div className={styles.bloco}>
@@ -120,7 +120,12 @@ const FilmeDetalhe = (props) => {
           {filmePesquisado.imdbID}
         </p>
       </div>
-      <Button component={RouterLink} to={`/pesquisar`}>
+      <Button
+        variant="outlined"
+        color="primary"
+        component={RouterLink}
+        to={`/pesquisar`}
+      >
         Voltar para a busca
       </Button>
     </div>

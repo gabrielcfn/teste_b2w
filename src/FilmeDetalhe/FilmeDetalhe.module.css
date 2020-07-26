@@ -2,6 +2,7 @@
   word-break: break-word;
   font-size: 14px;
   line-height: 18px;
+  padding-bottom: 20px;
 }
 
 .Ano {
@@ -32,4 +33,9 @@
   background-color: #ddd;
   padding: 7px;
   border-radius: 5px;
+  line-height: 1.2;
+}
+
+h1.titleBar {
+  font-size: 1.8em;
 }
