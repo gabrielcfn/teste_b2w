@@ -11,3 +11,8 @@ Criar uma tela de pesquisa de filmes que apresenta posters e detalhes na tooltip
 - Utilizar algum framework CSS (Bootstrap, Materialize, Foundation, Material UI) ou algum pré-processador de CSS (SASS, LESS, Stylus)
 - Utilizar algum framework/lib JS (Angular, React / NextJS, Vue / NuxtJS)
 - Levar em conta a experiência do usuário independente do dispositivo
+
+## Rodando:
+- Clonar o repositório
+- Navegar até o projeto
+- npm install & npm start
