@@ -3,17 +3,20 @@ import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import BlockIcon from "@material-ui/icons/Block";
 import styles from "./FilmeDetalhe.module.css";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const FilmeDetalhe = (props) => {
   const uri = props.uri;
   const imdbID = props.match.params.imdbID;
   const [filmePesquisado, setFilmePesquisado] = useState("");
+  const [carregandoDetalhe, setCarregandoDetalhe] = useState("false");
 
   useEffect(() => {
     buscarDetalhes();
   }, []);
 
   const buscarDetalhes = () => {
+    setCarregandoDetalhe(true);
     fetch(`${uri}&i=${imdbID}`)
       .then((res) => {
         return res.json();
@@ -21,11 +24,12 @@ const FilmeDetalhe = (props) => {
       .then((data) => {
         // sucesso
         if (data.Response === "True") {
-          console.log(data);
           setFilmePesquisado(data);
+          setCarregandoDetalhe(false);
         } else {
           // falha
           console.log("erro", data);
+          setCarregandoDetalhe(false);
           return data;
         }
       });
@@ -49,7 +53,43 @@ const FilmeDetalhe = (props) => {
     );
   }
 
-  return (
+  // placeholder da pesquisa
+  const skelly = (
+    <div className={styles.FilmeDetalhe}>
+      <Skeleton
+        variant="text"
+        width={300}
+        height={30}
+        className={styles.skellyTitle}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="text"
+        width={300}
+        height={16}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="text"
+        width={300}
+        height={16}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="text"
+        width={300}
+        height={16}
+        className={styles.skellyChildren}
+      />
+    </div>
+  );
+
+  const filmePronto = (
     <div className={styles.FilmeDetalhe}>
       <h1 className={styles.titleBar}>
         {filmePesquisado.Title}
@@ -129,6 +169,8 @@ const FilmeDetalhe = (props) => {
       </Button>
     </div>
   );
+
+  return carregandoDetalhe ? skelly : filmePronto;
 };
 
 export default FilmeDetalhe;

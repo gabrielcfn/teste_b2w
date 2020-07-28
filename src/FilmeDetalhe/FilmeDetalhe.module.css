@@ -49,3 +49,8 @@ h1.titleBar {
   font-size: 1.6em;
   background-color: darkgray;
 }
+
+.skellyTitle {
+  height: 30px;
+  margin: 15px auto;
+}

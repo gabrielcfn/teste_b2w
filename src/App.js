@@ -11,12 +11,13 @@ export const AppContext = React.createContext();
 // State inicial, será compartilhado por todo o app;
 const initialState = {
   filmes: [],
-  pesquisa: false,
   erro: "",
   pagina: 1,
   termo: "",
   total: 0,
   uri: "http://www.omdbapi.com/?apikey=ca9a6fca",
+  carregando: false,
+  pesquisa: false,
 };
 
 // Reducer
@@ -24,13 +25,21 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "ATUALIZAR_PESQUISA":
       return {
+        ...state,
         filmes: action.data.filmes,
-        pesquisa: action.data.pesquisa,
         erro: action.data.Error,
         pagina: action.data.pagina,
         termo: action.data.termo,
         total: action.data.total,
+        carregando: action.data.carregando,
+        pesquisa: action.data.pesquisa,
       };
+    case "CARREGANDO":
+      return {
+        ...state,
+        carregando: action.data.carregando,
+      };
+
     default:
       return initialState;
   }

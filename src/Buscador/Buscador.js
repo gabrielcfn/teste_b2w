@@ -25,6 +25,10 @@ const Buscador = () => {
     dispatch({ type: "ATUALIZAR_PESQUISA", data: newValue });
   };
 
+  const loader = (newValue) => {
+    dispatch({ type: "CARREGANDO", data: newValue });
+  };
+
   // controla o disparo da pesquisa
   const formSubmitHandler = (ev) => {
     ev.preventDefault();
@@ -32,6 +36,9 @@ const Buscador = () => {
   };
 
   const buscarFilmes = () => {
+    // exibe o esqueleto
+    loader({ carregando: true });
+
     fetch(`${uri}&s=${termoPesquisado}`)
       .then((res) => {
         return res.json();
@@ -45,6 +52,7 @@ const Buscador = () => {
             termo: termoPesquisado,
             pagina: 1,
             total: data.totalResults,
+            carregando: false,
           };
           atualizarPesquisa(payload);
         } else {
@@ -55,6 +63,7 @@ const Buscador = () => {
             termo: termoPesquisado,
             pagina: 1,
             total: 0,
+            carregando: false,
           };
           atualizarPesquisa(payload);
         }

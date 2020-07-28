@@ -3,7 +3,10 @@ import Buscador from "../Buscador/Buscador";
 import Filmes from "../Filmes/Filmes";
 
 import Pagination from "@material-ui/lab/Pagination";
+import Skeleton from "@material-ui/lab/Skeleton";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+import styles from "./Pesquisa.module.css";
 
 // importa o contexto do app
 import { AppContext } from "../App";
@@ -17,17 +20,17 @@ const Pesquisa = (props) => {
     dispatch({ type: "ATUALIZAR_PESQUISA", data: newValue });
   };
 
+  const loader = (newValue) => {
+    dispatch({ type: "CARREGANDO", data: newValue });
+  };
+
   // uri das pesquisas
   const uri = state.uri;
 
   // atualiza a página
   const handleChange = (event, value) => {
-    const payload = {
-      ...state,
-      pagina: value,
-    };
-
-    atualizarPesquisa(payload);
+    // exibe o esqueleto
+    loader({ carregando: true });
     buscarFilmes(value);
   };
 
@@ -39,6 +42,8 @@ const Pesquisa = (props) => {
       })
       .then((data) => {
         // sucesso
+        loader({ ...state, carregando: false });
+
         if (data.Response === "True") {
           const payload = {
             ...state,
@@ -73,6 +78,66 @@ const Pesquisa = (props) => {
 
   const mobile = useMediaQuery("(max-width:480px)");
 
+  // placeholder da pesquisa
+  const skelly = (
+    <div className={styles.Skelly}>
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+      <Skeleton
+        variant="rect"
+        width={300}
+        height={450}
+        className={styles.skellyChildren}
+      />
+    </div>
+  );
+
   return (
     <React.Fragment>
       <Buscador />
@@ -81,7 +146,8 @@ const Pesquisa = (props) => {
           Use um toque longo sobre o poster para ver mais detalhes do filme
         </span>
       ) : null}
-      <Filmes filmes={props.filmes} />
+      {state.carregando ? skelly : <Filmes filmes={props.filmes} />}
+
       {state.total > 0 ? paginacao : null}
     </React.Fragment>
   );
