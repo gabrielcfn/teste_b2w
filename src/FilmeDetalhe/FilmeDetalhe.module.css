@@ -39,3 +39,13 @@
 h1.titleBar {
   font-size: 1.8em;
 }
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  height: 445px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6em;
+  background-color: darkgray;
+}
