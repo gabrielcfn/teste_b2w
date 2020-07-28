@@ -5,8 +5,7 @@ import BlockIcon from "@material-ui/icons/Block";
 import styles from "./FilmeDetalhe.module.css";
 
 const FilmeDetalhe = (props) => {
-  const uriDetalhe = `http://omdbapi.com/?apikey=ca9a6fca&i=`;
-
+  const uri = props.uri;
   const imdbID = props.match.params.imdbID;
   const [filmePesquisado, setFilmePesquisado] = useState("");
 
@@ -15,7 +14,7 @@ const FilmeDetalhe = (props) => {
   }, []);
 
   const buscarDetalhes = () => {
-    fetch(`${uriDetalhe}${imdbID}`)
+    fetch(`${uri}&i=${imdbID}`)
       .then((res) => {
         return res.json();
       })

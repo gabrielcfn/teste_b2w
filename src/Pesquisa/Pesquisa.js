@@ -18,7 +18,7 @@ const Pesquisa = (props) => {
   };
 
   // uri das pesquisas
-  const uri = "http://www.omdbapi.com/?apikey=ca9a6fca";
+  const uri = state.uri;
 
   // atualiza a página
   const handleChange = (event, value) => {

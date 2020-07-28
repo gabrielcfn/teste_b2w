@@ -11,7 +11,9 @@ const Filmes = () => {
   let filmes;
 
   if (state.filmes.length === 0 && state.pesquisa === true) {
-    filmes = <span>Nenhum resultado encontrado</span>;
+    filmes = (
+      <span className={styles.nadaConsta}>Nenhum resultado encontrado</span>
+    );
   } else {
     filmes = state.filmes.map((filme, idx) => {
       return <Filme key={idx} filme={filme}></Filme>;

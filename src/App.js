@@ -16,6 +16,7 @@ const initialState = {
   pagina: 1,
   termo: "",
   total: 0,
+  uri: "http://www.omdbapi.com/?apikey=ca9a6fca",
 };
 
 // Reducer
@@ -46,7 +47,12 @@ function App() {
           <AppContext.Provider value={{ state, dispatch }}>
             <Switch>
               <Route path="/pesquisar" component={Pesquisa} />
-              <Route path="/detalhe/:imdbID" component={FilmeDetalhe} />
+              <Route
+                path="/detalhe/:imdbID"
+                render={(props) => (
+                  <FilmeDetalhe {...props} uri={initialState.uri} />
+                )}
+              />
               <Redirect from="/" to="/pesquisar" />
             </Switch>
           </AppContext.Provider>
